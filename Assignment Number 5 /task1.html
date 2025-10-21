@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Pizza Order</title>
+	<meta name="description" content="Simple Pizza Order Form" />
+</head>
+<body>
+	<div class="container">
+		<h1>Pizza Order</h1>
+		<div class="img-wrap">
+			<img src="pizza.jpg" alt="Pizza" width="320" />
+		</div>
+		<form action="#" method="post">
+			<div class="form-row">
+				<label for="name">Name of the Customer </label>
+				<input type="text" id="name" name="name" value="" />
+			</div>
+			<div class="form-row">
+				<label for="address">Address</label>
+				<textarea id="address" name="address" rows="3"></textarea>
+			</div>
+			<div class="form-row">
+				<label>Size</label>
+				<label class="inline"><input type="radio" name="size" value="small" /> Small</label>
+				<label class="inline"><input type="radio" name="size" value="medium" checked="checked" /> Medium</label>
+				<label class="inline"><input type="radio" name="size" value="large" /> Large</label>
+			</div>
+			<div class="form-row">
+				<label>Toppings</label>
+				<label class="inline"><input type="checkbox" name="topping_pepperoni" /> Pepperoni</label>
+				<label class="inline"><input type="checkbox" name="topping_mushroom" /> Mushroom</label>
+				<label class="inline"><input type="checkbox" name="topping_onion" /> Onion</label>
+				<label class="inline"><input type="checkbox" name="topping_cheese" /> Extra Cheese</label>
+			</div>
+			<div class="form-row">
+				<label for="quantity">Quantity</label>
+				<input type="number" id="quantity" name="quantity" value="1" min="1" />
+			</div>
+			<div class="form-row">
+				<label for="method">Delivery method</label>
+				<select id="method" name="method">
+					<option value="delivery">Delivery</option>
+					<option value="pickup">Pickup</option>
+				</select>
+			</div>
+			<div class="form-row">
+				<label for="notes">Special Instructions</label>
+				<textarea id="notes" name="notes" rows="2"></textarea>
+			</div>
+			<hr/>
+			<div class="actions">
+				<input type="Submit" value="Place Order" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

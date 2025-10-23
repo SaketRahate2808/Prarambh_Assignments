@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Function Assignment </title>
+</head>
+<body style="font-family: Arial; background-color: #f9f9ff; padding: 20px;">
+
+    <h2 style="text-align: center; color: purple;">Assignment </h2>
+
+        <!-- Average Calculation-->
+         <div style="border: 3px solid purple; padding: 15px; margin-bottom: 15px; border-radius: 10px; width: 400px;">
+            <h3 style="color: darkblue;"> A] Find Average Marks</h3>
+            <label> Total Marks: </label>
+            <input type="number" id="marks" placeholder="Enter total marks"> <br><br>
+
+             <label> Number of Subjects: </label>
+            <input type="number" id="subjects" placeholder="Enter total number of subjects"> <br><br>
+            <button onclick="findAverage()" style="background: purple; color: white; padding: 6px 12px; border: none; border-radius: 5px;"> Calculate Average </button>
+            <p id="avgResult" style="font-weight: bold;"> </p>
+         </div>
+
+
+         <!--Power Function-->
+         <div style="border: 3px solid purple; padding: 15px; margin-bottom: 15px; border-radius: 10px; width: 400px;">
+            <h3 style="color: darkblue;"> B] Find Power Value </h3>
+            <label> Enter X </label>
+            <input type="number" id="base" placeholder="Enter base number"> <br><br>
+
+             <label> Enter Y </label>
+            <input type="number" id="exponent" placeholder="Enter exponent"> <br><br>
+            <button onclick="findPower()" style="background: purple; color: white; padding: 6px 12px; border: none; border-radius: 5px;"> Calculate Power</button>
+            <p id="powerResult" style="font-weight: bold;"> </p>
+         </div>
+
+         <!-- Count Words in String-->
+          <div style="border: 3px solid purple; padding: 15px; margin-bottom: 15px; border-radius: 10px; width: 400px;">
+            <h3 style="color: darkblue;"> C] Count words in a sentence</h3>
+            <label> Enter Sentence </label>
+            <input type="text" id="sentence" placeholder="Type your sentence"> <br><br>
+            <button onclick="countWords()" style="background: purple; color: white; padding: 6px 12px; border: none; border-radius: 5px;"> Calculate Number of Words  </button>
+            <p id="wordResult" style="font-weight: bold;"> </p>
+         </div>
+
+         <!-- Clear All -->
+          <div style="text-align: center; margin-top: 20px;">
+            <button onclick="clearAll()"
+            style="background: red; color: white; padding: 8px 16px; font-weight: bold; border: none; border-radius: 8px;">
+        Clear All</button>
+          </div>
+
+          <script>
+
+            /// A) Average button
+            function findAverage(){
+                let marks = parseFloat(document.getElementById("marks").value);
+                let subjects = parseInt(document.getElementById("subjects").value);
+
+                if(isNaN(marks) || isNaN(subjects) || subjects <=0 ) {
+                    alert("Enter valid marks and number of subjects");
+                    return;
+                }
+
+            let avg = marks / subjects;
+            document.getElementById("avgResult").innerHTML = `Average marks are : ${avg.toFixed(2)}`;
+            }
+
+            ///Power Function
+            function findPower(){
+            let x = parseFloat(document.getElementById("base").value);
+            let y = parseFloat(document.getElementById("exponent").value);
+
+            if(isNaN(x) || isNaN(y)) {
+                alert("Please enter valid numbers");
+                return;
+            }
+
+            let result = Math.pow(x,y);
+            document.getElementById("powerResult").innerHTML = `${x}<sup>${y}</sup> = ${result}`;
+        }
+
+        /// Word Count Function
+
+        function countWords(){
+            let sentence = document.getElementById("sentence").value.trim();
+            if(sentence === ""){
+                alert("Please enter a sentence ");
+                return;
+            }
+
+            let words = sentence.split(" ").filter(word => word.length > 0);
+            document.getElementById("wordResult").innerHTML = `Word Count: ${words.length}`;
+        }
+
+
+        ///Clear All
+
+        function clearAll(){
+            document.getElementById("marks").value = "";
+            document.getElementById("subjects").value = "";
+            document.getElementById("base").value = "";
+            document.getElementById("exponent").value = "";
+            document.getElementById("sentence").value = "";
+
+            document.getElementById("avgResult").value = "";
+            document.getElementById("powerResult").value = "";
+            document.getElementById("wordResult").value = "";
+
+            alert("All clear");
+        }
+          </script>
+</body>
+</html>

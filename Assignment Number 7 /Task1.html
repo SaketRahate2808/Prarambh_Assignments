@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Assignemts for Javascript</title>
+</head>
+<body>
+    <h1> Javascript Assignemt number 1 </h1>
+    <fieldset>
+        <legend> User Information </legend>
+        <label for="username">User Name:</label>
+        <input type="text" id="username" name="username"> <br> <br>
+
+        <label for="password"> Password: </label>
+        <input type="password" id="password" name="'password"> <br> <br>
+
+        <button id="LoginButton" onclick="showUserInfo()"> Login </button>
+
+    </fieldset>
+
+    <p id="info" style="padding: 10px; font-weight: bold; width: fit-content;"></p>
+    <script> 
+    let attemptCount = 0
+    const correctPassword = 'admin123';
+        function showUserInfo() {
+            let uname = document.getElementById("username").value;
+            let pass = document.getElementById("password").value;
+            let info = document.getElementById("info");
+            let btn = document.getElementById("LoginButton");
+
+            info.style.backgroundColor = "";
+            info.style.color = "";
+            info.style.borderRadius = "8px";
+
+            
+            if(pass === correctPassword){
+                info.classList.add("Success")
+                info.innerText = `Welcome , ${uname} ! Login successfull `;
+                info.style.backgroundColor = "Green";
+                info.style.color = "White";
+                attemptCount = 0;
+            }
+
+            else{
+                attemptCount++;
+                info.classList.add("Error");
+                info.innerText = `Incorrect password attempt. Attempt ${attemptCount} of 3 `;
+                info.style.backgroundColor = "Red";
+                info.style.color = "White";
+
+                if(attemptCount >= 3){
+                    alert("You have entered the wrong password 3 times. Access denied");
+                    btn.disabled = true;
+                    info.innerText = "Login disabled due to too many failed attempts ";
+                    info.style.backgroundColor = "darkred";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

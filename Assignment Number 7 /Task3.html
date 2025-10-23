@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Cost Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .results p {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 16px;
+        }
+        .results p strong {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meal Cost Calculator</h1>
+        <label for="baseCost">Base Cost of Meal:</label>
+        <input type="number" id="baseCost" placeholder="Enter base meal cost" min="0">
+
+        <button onclick="calculateTotal()">Calculate Total</button>
+
+        <div class="results" id="resultsDisplay">
+            <p>Meals Base Cost: $<span id="displayBaseCost">0.00</span></p>
+            <p>Tip Amount (10%): $<span id="displayTipAmount">0.00</span></p>
+            <p>Tax Amount (8%): $<span id="displayTaxAmount">0.00</span></p>
+            <p><strong>Total Amount: $<span id="displayTotalAmount">0.00</span></strong></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            const baseCostInput = document.getElementById('baseCost');
+            const baseCost = parseFloat(baseCostInput.value);
+
+            if (isNaN(baseCost) || baseCost < 0) {
+                alert('Please enter a valid positive number for the base cost.');
+                return;
+            }
+
+            const tipPercent = 0.10; // 10%
+            const taxPercent = 0.08; // 8%
+
+            const tipAmount = baseCost * tipPercent;
+            const taxAmount = baseCost * taxPercent;
+            const totalAmount = baseCost + tipAmount + taxAmount;
+
+            // Round the total amount to the nearest integer
+            const roundedTotalAmount = Math.round(totalAmount);
+
+            document.getElementById('displayBaseCost').textContent = baseCost.toFixed(2);
+            document.getElementById('displayTipAmount').textContent = tipAmount.toFixed(2);
+            document.getElementById('displayTaxAmount').textContent = taxAmount.toFixed(2);
+            document.getElementById('displayTotalAmount').textContent = roundedTotalAmount.toFixed(2);
+        }
+    </script>
+</body>
+</html>

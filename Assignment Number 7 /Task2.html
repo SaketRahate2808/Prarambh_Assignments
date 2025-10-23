@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Product Total Calculator</title>
+</head>
+<body>
+
+<h2 style="font-family: Arial;">🛒 Product Billing System</h2>
+
+<div style="border: 5px solid purple; padding: 20px; width: 400px; border-radius: 10px;">
+  <label><b>Product Name :</b></label>
+  <input type="text" id="pname" placeholder="Enter product name"><br><br>
+
+  <label><b>Unit Price :</b></label>
+  <input type="number" id="price" placeholder="Enter price"><br><br>
+
+  <label><b>Quantity :</b></label>
+  <input type="number" id="qty" placeholder="Enter quantity"><br><br>
+
+  <button onclick="getTotal()" style="background-color: purple; color: white; padding: 6px 12px; border-radius: 5px; border: none;">Get Total</button><br><br>
+
+  <div id="result" style="padding: 10px; font-family: Arial;"></div>
+</div>
+
+<script>
+function getTotal() {
+  let pname = document.getElementById("pname").value.trim();
+  let price = parseFloat(document.getElementById("price").value);
+  let qty = parseInt(document.getElementById("qty").value);
+  let resultDiv = document.getElementById("result");
+
+  // Input validation
+  if (!pname || isNaN(price) || isNaN(qty) || price <= 0 || qty <= 0) {
+    alert("⚠️ Please enter valid product details!");
+    resultDiv.innerHTML = "";
+    return;
+  }
+
+  let total = price * qty;
+  let discount = 0;
+  let discountRate = 0;
+
+  // Dynamic discount logic
+  if (qty > 30) {
+    discountRate = 20;
+    discount = total * 0.20;
+  } else if (qty > 20) {
+    discountRate = 15;
+    discount = total * 0.15;
+  } else if (qty > 10) {
+    discountRate = 10;
+    discount = total * 0.10;
+  }
+
+  let finalAmount = total - discount;
+
+  // Ask user for confirmation
+  let confirmCalc = confirm(`Do you want to calculate the total for "${pname}"?`);
+  
+  if (confirmCalc) {
+    // Display results dynamically
+    resultDiv.innerHTML = `
+      <b>Product Name:</b> ${pname}<br>
+      <b>Unit Price:</b> ₹${price.toFixed(2)}<br>
+      <b>Quantity:</b> ${qty}<br>
+      <b>Total (Before Discount):</b> ₹${total.toFixed(2)}<br>
+      <b>Discount Applied:</b> ${discountRate}%<br>
+      <b>Final Amount:</b> ₹${finalAmount.toFixed(2)}<br>
+      ${discountRate > 0 ? `<p style='color:green;'>🎉 Congrats! You received a ${discountRate}% discount!</p>` : `<p style='color:orange;'>No discount applied.</p>`}
+    `;
+
+    // Apply live styling feedback
+    resultDiv.style.backgroundColor = discountRate > 0 ? "lightgreen" : "lightyellow";
+    resultDiv.style.border = discountRate > 0 ? "3px solid green" : "3px solid orange";
+    resultDiv.style.borderRadius = "10px";
+    resultDiv.style.transition = "all 0.5s ease";
+  } else {
+    alert("❌ Calculation cancelled by user.");
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title> Assignment number 8  </title>
+       </head>
+<body style="font-family: Arial; background-color: white; padding: 20px;">
+
+    <h2 style="color: purple; text-align: center;">Course Management System </h2>
+    <div style="border: 3px solid purple; border-radius: 10px; padding: 20px; width: 400px; margin: auto;">
+
+        <label><b> Enter the Course Name: </b></label><br>
+        <input type="text" id="courseName" placeholder="Enter the course name"
+        style="width: 95%; padding: 5px; margin-top: 5px;"> <br> <br>
+        <div style="text-align: center;">
+            <button onclick="showCourses()"
+            style="background-color: blue; color: white; padding: 6px 12px; border: none; border-radius: 5px; margin: 3px;">
+        Show</button>
+
+        <button onclick="addCourse()"
+        style="background-color: green; color: white; padding: 6px 12px; border: none; border-radius: 5px; margin: 3px;">
+    Add</button>
+
+    <button onclick="removeCourse()"
+        style="background-color: red; color: white; padding: 6px 12px; border: none; border-radius: 5px; margin: 3px;">
+    Remove</button>
+        </div>
+    
+        <h3 style="color: darkblue; margin-top: 20px;"> Available Courses:</h3>
+        <ul id="courseList"
+        style="background-color: #fff; border: 1px solid gray; padding: 10px; border-radius: 8px;list-style-type: circle;">
+    </ul>
+    </div>
+
+    <script>
+
+        let courses = ["Mathematics", "Biology", "Chemistry", "Physics", "English", "Computer Networks", "Cryptography"];
+
+        function showCourses(){
+            let list = document.getElementById("courseList");
+            list.innerHTML="";
+
+            if(courses.length === 0){
+                list.innerHTML = "<li style= 'color: red;'> No courses available </li>";
+            }
+            else{
+                for(let i=0; i<courses.length;i++){
+                    let li = document.createElement("li");
+                    li.textContent = courses[i];
+                    list.appendChild(li);
+                }
+            }
+        }
+
+
+        function addCourse(){
+            let course = document.getElementById("courseName").value.trim();
+
+            if(course === ""){
+                alert("Please enter a course name !");
+                return;
+            }
+            if(courses.includes(course)){
+                alert("The course already exists");
+                return;
+            }
+            else{
+                courses.push(course);
+                alert("Course added successfully");
+                return;
+            }
+
+            document.getElementById("courseName").value = "";
+        }
+
+        function removeCourse(){
+            let course = document.getElementById("courseName").value.trim();
+            if(course === ""){
+                alert("Please enter a course name ");
+                return;
+            }
+
+            let index = courses.indexOf(course);
+            if(index === -1){
+                alert("Course not found");
+            }
+            else{
+                courses.splice(index, 1);
+                alert("Course removed successfully");
+            }
+
+            document.getElementById("courseName").value = "";
+            
+        }
+    </script>
+</body>
+</html>

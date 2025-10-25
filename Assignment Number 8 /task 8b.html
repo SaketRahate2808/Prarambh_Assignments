@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Course Filter</title>
+</head>
+<body style="font-family: Arial; background-color: #f7f7ff; padding: 20px;">
+
+<h2 style="color: purple; text-align: center;">🎓 Student Course List</h2>
+
+<div style="border: 3px solid purple; border-radius: 10px; padding: 20px; width: 500px; margin: auto;">
+
+  <label><b>Enter Course Name to Filter:</b></label><br>
+  <input type="text" id="filterInput" placeholder="e.g. React, Angular" 
+         style="width: 95%; padding: 5px; margin-top: 5px;"><br><br>
+
+  <div style="text-align: center;">
+    <button onclick="showAllStudents()" 
+            style="background-color: blue; color: white; padding: 6px 12px; border: none; border-radius: 5px; margin: 3px;">
+      Show All
+    </button>
+    <button onclick="filterStudents()" 
+            style="background-color: green; color: white; padding: 6px 12px; border: none; border-radius: 5px; margin: 3px;">
+      Filter by Course
+    </button>
+  </div>
+
+  <h3 style="color: darkblue; margin-top: 20px;">Student Details:</h3>
+  <div id="list1" style="border: 1px solid gray; border-radius: 8px; padding: 10px; background: #fff;"></div>
+
+</div>
+
+<script>
+function showAllStudents() {
+  let studentsArray = [
+    { id: 10256, name: "Scott", course: "React" },
+    { id: 10257, name: "Allen", course: "Angular" },
+    { id: 10258, name: "John", course: "Vue" },
+    { id: 10259, name: "Smith", course: "Node" },
+    { id: 10260, name: "Clark", course: "Express" }
+  ];
+
+  displayTable(studentsArray);
+}
+
+function filterStudents() {
+  let studentsArray = [
+    { id: 10256, name: "Scott", course: "React" },
+    { id: 10257, name: "Allen", course: "Angular" },
+    { id: 10258, name: "John", course: "Vue" },
+    { id: 10259, name: "Smith", course: "Node" },
+    { id: 10260, name: "Clark", course: "Express" }
+  ];
+
+  let courseFilter = document.getElementById("filterInput").value.trim().toLowerCase();
+
+  let filtered = studentsArray.filter(student => 
+    student.course.toLowerCase() === courseFilter
+  );
+
+  if (filtered.length === 0) {
+    document.getElementById("list1").innerHTML = 
+      `<p style='color:red;'>No students found for "${courseFilter}"</p>`;
+  } else {
+    displayTable(filtered);
+  }
+}
+
+function displayTable(data) {
+  let listObj = document.getElementById("list1");
+  let str = "<table style='width:100%; border-collapse: collapse;'>";
+  str += "<tr style='background-color: purple; color: white;'>" +
+           "<th style='border:1px solid black; padding:5px;'>ID</th>" +
+           "<th style='border:1px solid black; padding:5px;'>Name</th>" +
+           "<th style='border:1px solid black; padding:5px;'>Course</th>" +
+         "</tr>";
+
+  for (let item of data) {
+    str += `<tr>
+              <td style='border:1px solid gray; padding:5px;'>${item.id}</td>
+              <td style='border:1px solid gray; padding:5px;'>${item.name}</td>
+              <td style='border:1px solid gray; padding:5px;'>${item.course}</td>
+            </tr>`;
+  }
+
+  str += "</table>";
+  listObj.innerHTML = str;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dynamic Product Adder</title>
+</head>
+<body style="font-family: Arial; text-align: center; background-color: #f8f9fa;">
+
+<h2 style="color: darkblue;">Add Products Dynamically</h2>
+
+<!-- Input fields for product details -->
+<div style="border:2px solid darkblue; border-radius:10px; display:inline-block; padding:15px; background-color:#fff;">
+  <label><b>Product Name:</b></label><br>
+  <input type="text" id="pname" placeholder="Enter product name" style="padding:5px; width:200px;"><br><br>
+
+  <label><b>Description:</b></label><br>
+  <input type="text" id="pdesc" placeholder="Enter description" style="padding:5px; width:200px;"><br><br>
+
+  <label><b>Image URL:</b></label><br>
+  <input type="text" id="pimg" placeholder="Enter image URL" style="padding:5px; width:200px;"><br><br>
+
+  <button id="addBtn" 
+          style="background-color: darkgreen; color: white; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;">
+    Add Product
+  </button>
+</div>
+
+<!-- Section to hold products -->
+<section id="productSection" style="margin-top: 30px;"></section>
+
+<script>
+let productCount = 1;
+
+// Add event listener for button click
+document.getElementById("addBtn").addEventListener("click", function() {
+  // Get input values
+  let name = document.getElementById("pname").value.trim();
+  let desc = document.getElementById("pdesc").value.trim();
+  let imgURL = document.getElementById("pimg").value.trim();
+
+  // Validate inputs
+  if (name === "" || desc === "" || imgURL === "") {
+    alert(" Please fill all product details!");
+    return;
+  }
+
+  // Reference to section
+  let section = document.getElementById("productSection");
+
+  // Create div for product
+  let productDiv = document.createElement("div");
+  productDiv.style.display = "inline-block";
+  productDiv.style.border = "2px solid #333";
+  productDiv.style.borderRadius = "10px";
+  productDiv.style.margin = "10px";
+  productDiv.style.padding = "10px";
+  productDiv.style.width = "200px";
+  productDiv.style.backgroundColor = "#fff";
+  productDiv.style.boxShadow = "2px 2px 8px rgba(0,0,0,0.2)";
+  productDiv.style.verticalAlign = "top";
+
+  // Create image
+  let img = document.createElement("img");
+  img.src = imgURL;
+  img.alt = "Product Image";
+  img.style.width = "100%";
+  img.style.borderRadius = "8px";
+
+  // Create span for name
+  let nameSpan = document.createElement("span");
+  nameSpan.innerText = name;
+  nameSpan.style.display = "block";
+  nameSpan.style.fontWeight = "bold";
+  nameSpan.style.color = "darkblue";
+  nameSpan.style.marginTop = "8px";
+
+  // Create description
+  let descP = document.createElement("p");
+  descP.innerText = desc;
+  descP.style.fontSize = "14px";
+  descP.style.color = "#444";
+
+  // Add all to productDiv
+  productDiv.appendChild(img);
+  productDiv.appendChild(nameSpan);
+  productDiv.appendChild(descP);
+
+  // Add productDiv to section
+  section.appendChild(productDiv);
+
+  // Clear inputs
+  document.getElementById("pname").value = "";
+  document.getElementById("pdesc").value = "";
+  document.getElementById("pimg").value = "";
+
+  alert(" Product added successfully!");
+  productCount++;
+});
+</script>
+
+</body>
+</html>

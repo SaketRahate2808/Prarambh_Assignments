@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Employee table - with applying styles </title>
+    </head>
+    <body style="font-family: Arial; text-align: center; background-color: #f5f5ff ; padding: 30px;">
+        <h2 style="color: darkblue;"> Employee Details </h2>
+        <table id="empTable" border="1" cellpadding="8" cellspace="0"
+        style="margin: auto; border-collapse: collapse; width: 60%;">
+    <tr style="background-color: lightgray;">
+        <th> Emp ID </th>
+        <th> Name </th>
+        <th> Department </th>
+        <th> Salary </th>
+    </tr>
+    <tr>
+        <td> 101 </td>
+        <td> Rakesh </td>
+        <td> HR </td>
+        <td> 45000 </td>
+    </tr>
+
+    <tr>
+        <td> 102 </td>
+        <td> Rashmi </td>
+        <td> IT </td>
+        <td> 35000 </td>
+    </tr>
+
+    <tr>
+        <td> 103 </td>
+        <td> Mohit </td>
+        <td> Admin </td>
+        <td> 55000 </td>
+    </tr>
+
+    <tr>
+        <td> 104 </td>
+        <td> Anjali </td>
+        <td> Marketing </td>
+        <td> 39000 </td>
+    </tr>
+
+    <tr>
+        <td> 105 </td>
+        <td> Ravi  </td>
+        <td> Finance </td>
+        <td> 75000 </td>
+    </tr>
+    </table>
+
+    <br>
+    <button onclick="applyStyles()" style="background-color: darkblue; color: white; padding: 8px 16px; border: none; border-radius:  5px; cursor: pointer;">
+        Apply Styles
+    </button>
+
+    <script>
+        function applyStyles(){
+            let table = document.getElementById("empTable");
+            let rows = table.getElementsByTagName("tr");
+            for(let i = 1 ; i < rows.length; i++){
+                if(i % 2 === 0){
+                    rows[i].style.backgroundColor = "#d1e7dd";
+                }
+                else{
+                    rows[i].style.backgroundColor = "#f8d7da";
+                }
+            }
+            alert("Alternate rows applied");
+        }
+    </script>
+
+
+    </body>
+</html>

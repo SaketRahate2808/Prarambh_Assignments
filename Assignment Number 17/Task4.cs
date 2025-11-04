@@ -1,6 +1,4 @@
 using System;
-
-// Custom exception class
 public class NegativeNumberException : Exception
 {
     public NegativeNumberException(string message) : base(message) { }
@@ -21,8 +19,6 @@ class ArrayReader
             {
                 Console.WriteLine($"Enter number {i + 1}:");
                 int num = int.Parse(Console.ReadLine());
-
-                // Throw custom exception if number is negative
                 if (num < 0)
                 {
                     throw new NegativeNumberException("Negative numbers are not allowed.");

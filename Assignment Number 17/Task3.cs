@@ -2,19 +2,14 @@ using System;
 
 class UserAccessControl
 {
-    // Basic message logger
     static void Logger(string message)
     {
         Console.WriteLine($"[INFO] Message: {message}");
     }
-
-    // Logger with level
     static void Logger(string message, string level)
     {
         Console.WriteLine($"[{level.ToUpper()}] Message: {message}");
     }
-
-    // Logger with level and timestamp
     static void Logger(string message, string level, float timestamp)
     {
         Console.WriteLine($"[{level.ToUpper()}] Message: {message} | Timestamp: {timestamp}");
@@ -32,8 +27,8 @@ class UserAccessControl
         float timestamp = float.Parse(Console.ReadLine());
 
         Console.WriteLine("\n--- Logging Outputs ---");
-        Logger(msg);                        // Basic
-        Logger(msg, level);                 // With level
-        Logger(msg, level, timestamp);      // With level and timestamp
+        Logger(msg);                       
+        Logger(msg, level);                 
+        Logger(msg, level, timestamp);      
     }
 }

@@ -1,24 +1,24 @@
 using System;
-using System.Drawing;
 class UserAccessControl
 {
-    static void Geometry(int side  )
+    static void Geometry(int side)
     {
         int Area = side * side;
         Console.WriteLine($"The area of the sqaure is {Area}");
     }
 
-    static void Geometry(double length , double breadth)
-    { 
+    static void Geometry(double length, double breadth)
+    {
         double Area = length * breadth;
-        Console.WriteLine($"The area of the sqaure is {Area}");
+        Console.WriteLine($"The area of the sqaure is {Math.Round(Area, 2)}");
+        
 
     }
 
     static void Geometry(float radius)
     {
         float Area = (float)(Math.PI * radius * radius);
-        Console.WriteLine($"The area of the sqaure is {Area}");
+        Console.WriteLine($"The area of the sqaure is {Math.Round(Area, 2)}");
 
     }
 
@@ -26,7 +26,7 @@ class UserAccessControl
     static void Main()
     {
         Console.WriteLine("Enter the side for square ");
-       int s = int.Parse(Console.ReadLine());
+        int s = int.Parse(Console.ReadLine());
         Console.WriteLine("Enter the length of the rectangle ");
         double l = double.Parse(Console.ReadLine());
 
